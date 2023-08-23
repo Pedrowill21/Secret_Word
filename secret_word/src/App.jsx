@@ -19,7 +19,7 @@ const stages = [
 function App() {
 
   const [gameStage, setGameStage] = useState(stages[0].name)
-  const [words, setWords] = useState(wordsList)
+  const [words, setWord] = useState(wordsList)
   const [pickedWord, setPickedWord] = useState("")
   const [pickedCategory, setPickedCategory] = useState("") 
   const [letters,setLetters] = useState([]) 
@@ -27,14 +27,22 @@ function App() {
   const pickedWordAndCategory = ()=>{
     const categories = Object.keys(words)
     const category = categories[Math.floor(Math.random() * Object.keys(categories).length)];
-    console.log(category)
+    const word = words[category][Math.floor(Math.random() * words[category].length )]
+
+    return {word, category}
   }
 
   const startGame = ()=>{
 
-    pickedWordAndCategory()
+   const {word, category} = pickedWordAndCategory()
 
+    let wordLetters = word.split("")
 
+    wordLetters = wordLetters.map((l)=>l.toLowerCase())
+
+    setWord(word)
+    setPickedCategory(category)
+    setLetters(letters)
 
     setGameStage(stages[1].name)
   }
