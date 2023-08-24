@@ -4,11 +4,20 @@
 
 import "./Game.css"
 
-const Game = ({verifyLetter}) => {
+const Game = ({
+            verifyLetterm,
+            pickedWord,
+            pickedCategory, 
+            letters, 
+            guessedLetters,
+            wrongLetters,
+            guesses,
+            score,
+}) => {
   return (
     <div className="game">
        <p className="points">
-        <span>Pontuação : 000</span>
+        <span>Pontuação : {score}</span>
        </p>
        <h1>Adivinhe a palavra:</h1>
        <h3>Dica sobre a palavra: <span>Dica...</span></h3>
@@ -23,7 +32,7 @@ const Game = ({verifyLetter}) => {
         </form>
        </div>
        <div className="wrongLettersContainer">
-        <p>Letras já utilizadas:</p>
+        <p>Letras já utilizadas: {wrongLetters}</p>
        </div>
     </div>
   )
