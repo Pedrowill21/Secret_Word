@@ -42,6 +42,7 @@ const qtdGuess = 3
   }, [words])
 
   const startGame = useCallback(()=>{
+    clearLettersStates()
 
     const {word, category} = pickedWordAndCategory()
  
@@ -90,6 +91,19 @@ const qtdGuess = 3
     }
   },[guesses, letters, startGame])
 
+  useEffect(() => {
+    const uniqueLetters = [...new Set(letters)];
+
+    // win condition
+    if (guessedLetters.length === uniqueLetters.length) {
+      // add score
+      setScore((actualScore) => (actualScore += 100));
+
+      // restart game with new word
+      startGame();
+    }
+  }, [guessedLetters, letters, startGame]);
+
   const retry = () =>{
     setScore(0)
     setGuesses(qtdGuess)
@@ -111,7 +125,7 @@ const qtdGuess = 3
             guesses={guesses}
             score={score}  
             />}
-          {gameStage === "end" && <GameOver retry={retry}/>}
+          {gameStage === "end" && <GameOver retry={retry} score={score}/>}
           
 
 
