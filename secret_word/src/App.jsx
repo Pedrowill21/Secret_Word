@@ -51,7 +51,7 @@ function App() {
 
     setWord(word)
     setPickedCategory(category)
-    setLetters(letters)
+    setLetters(wordLetters)
 
     setGameStage(stages[1].name)
   }
